@@ -1,0 +1,65 @@
+:root {
+  /* MGS PSX-ish palette: desaturated teal/green-gray with a cyan signal color */
+  --bg: #2f4742;
+  --bg-deep: #16241f;
+  --ink: #cfe6df;
+  --ink-dim: #7fa39b;
+  --accent: #9af7df;
+  --accent-dim: #4f9d8b;
+  --line: rgba(154, 247, 223, 0.35);
+  --box: rgba(8, 20, 18, 0.55);
+  --box-selected: rgba(154, 247, 223, 0.12);
+
+  --mono: 'Courier New', ui-monospace, Consolas, monospace;
+
+  font-family: var(--mono);
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: radial-gradient(120% 120% at 50% 0%, var(--bg) 0%, var(--bg-deep) 100%);
+  color: var(--ink);
+  overflow: hidden;
+}
+
+/* CRT vignette — darkens the corners like a curved tube */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  background: radial-gradient(
+    120% 120% at 50% 50%,
+    transparent 55%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
+}
+
+/* CRT scanline overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: multiply;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.14) 0px,
+    rgba(0, 0, 0, 0.14) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
