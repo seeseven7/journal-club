@@ -28,7 +28,7 @@ function App() {
   const { move, select } = useSound()
 
   // Refs mirror the latest values so the stable callbacks below don't need to
-  // be rebuilt on every keystroke (which would re-bind the global listeners).
+  // be rebuilt on every keystroke (which would re-bind the global listeners)
   const entriesRef = useRef(entries)
   const currentIdRef = useRef(currentId)
   const textRef = useRef(text)
@@ -36,7 +36,7 @@ function App() {
   useEffect(() => void (currentIdRef.current = currentId), [currentId])
   useEffect(() => void (textRef.current = text), [text])
 
-  /** Upsert the current page into storage. No-op for an empty page. */
+  /* Upsert(?) the current page into storage. No-op for an empty page. */
   const commitCurrent = useCallback(() => {
     const body = textRef.current
     if (body.trim() === '') return
@@ -88,7 +88,7 @@ function App() {
           setListOpen(true)
           break
         default:
-          break // settings: stubbed
+          break // settings 
       }
     },
     [commitCurrent, select],
@@ -107,7 +107,7 @@ function App() {
 
   const { open, selectedIndex } = useEquipMenu(ITEMS.length, handleActivate, move)
 
-  // Reset the status readout and chirp when the menu reopens.
+  // Reset the status readout and bleep when the menu reopens
   useEffect(() => {
     if (open) {
       setStatus(null)

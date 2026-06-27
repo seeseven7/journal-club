@@ -4,6 +4,8 @@ A minimal journaling app with a PSX inspired interface.
 You write directly on a teal CRT-style screen, and hold a key to bring up an 
 equip-style menu for managing entries.
 
+Cigarettes icon is from Metal Gear 2.
+
 ## How to use
 
 - **Write** anywhere on the screen

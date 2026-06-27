@@ -1,9 +1,9 @@
 import { useCallback, useRef } from 'react'
 
 /**
- * Tiny synthesized blips via the Web Audio API — no asset files.
+ * Tiny synthesized blips via the Web Audio API so no asset files (temp).
  * The AudioContext is created lazily on first use (a key press counts as the
- * user gesture browsers require) and resumed if the tab suspended it.
+ * user gesture browsers require) and resumed if the tab suspended it
  */
 export function useSound() {
   const ctxRef = useRef<AudioContext | null>(null)

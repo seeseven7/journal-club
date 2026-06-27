@@ -62,7 +62,7 @@
   transform: scale(1.07);
 }
 
-/* MGS targeting brackets on the highlighted box (top-left + bottom-right) */
+/* Targeting brackets on the highlighted box (top-left + bottom-right) */
 .equip-box.selected::before,
 .equip-box.selected::after {
   content: '';
@@ -84,7 +84,7 @@
   border-width: 0 2px 2px 0;
 }
 
-/* The horizontal description bar that forms the foot of the "L" */
+/* The horizontal description bar */
 .equip-label {
   display: flex;
   flex-direction: column;

@@ -22,7 +22,7 @@ export function saveEntries(entries: Entry[]): void {
   try {
     localStorage.setItem(KEY, JSON.stringify(entries))
   } catch {
-    // storage full or unavailable — nothing useful to do here yet
+    // storage full or unavailable, nothing useful to do here yet
   }
 }
 

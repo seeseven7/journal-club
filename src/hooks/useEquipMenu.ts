@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 /**
- * MGS1 equip-menu interaction model:
- *   - Hold the trigger key  -> menu opens.
- *   - Press a direction key  -> selection steps one slot (wraps around).
- *   - Release the trigger    -> the highlighted item is activated.
- *   - Window loses focus     -> menu closes without activating.
+ * MGS equip-menu interaction:
+ *   - Hold the trigger key   -> menu opens
+ *   - Press a direction key  -> selection steps one slot (wraps)
+ *   - Release the trigger    -> the highlighted item is activated
+ *   - Window loses focus     -> menu closes without activating
  *
- * Selection is remembered between openings, like the real game.
+ * Selection is remembered between openings.
  */
 const TRIGGER_KEY = 'Tab'
 const PREV_KEYS = ['ArrowUp', 'ArrowLeft']

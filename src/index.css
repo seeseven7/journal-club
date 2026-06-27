@@ -1,5 +1,5 @@
 :root {
-  /* MGS PSX-ish palette: desaturated teal/green-gray with a cyan signal color */
+  /* desaturated teal/green-gray with a cyan signal color */
   --bg: #2f4742;
   --bg-deep: #16241f;
   --ink: #cfe6df;
@@ -33,7 +33,7 @@ body {
   overflow: hidden;
 }
 
-/* CRT vignette — darkens the corners like a curved tube */
+/* CRT vignette */
 body::before {
   content: '';
   position: fixed;
