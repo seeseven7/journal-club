@@ -1,23 +1,28 @@
 # journal-club
 
 A minimal journaling app with a PSX inspired interface.
-You write directly on a teal CRT-style screen, and hold a key to bring up an 
+You write directly on a teal CRT-style screen, and hold a key to bring up an
 equip-style menu for managing entries.
+
+**Try it here: https://seeseven7.github.io/journal-club/**
 
 Cigarettes icon is from Metal Gear 2.
 
 ## How to use
 
-- **Write** anywhere on the screen
-- **Hold `Tab`** to open the menu
-- **`↑` / `↓`** to move the highlight while holding `Tab`
-- **Release `Tab`** to run the highlighted item:
+- **Title** your page on the top line; the creation date sits just below it
+- **Write** in the body below
+- **Hold `⌥` (right Option)** to open the menu
+- **`↑` / `↓`** (or `←` / `→`) while holding to select from the options
+- **Release `⌥`** to run the selected item (release without moving just cancels):
   - **New Page** — saves the current page, then clears it
-  - **Past Entries** — browse saved entries (`Esc` or click outside to close)
-  - **Save** — store the current page
+  - **Past Entries** — browse saved entries by title + date (`Esc` or click
+    outside to close)
+  - **Save** — store the current page now
   - **Settings** — W.I.P.
 
-Currently only local storage...
+Everything **autosaves** as you type. Entries live in your browser's local
+storage (no account, no server).
 
 ## Project layout
 
@@ -35,4 +40,4 @@ src/
 
 ## Built with
 
-React + TypeScript + Vite.
+React + TypeScript + Vite + Love

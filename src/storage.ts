@@ -1,5 +1,6 @@
 export type Entry = {
   id: string
+  title: string
   body: string
   createdAt: number
   updatedAt: number
@@ -28,4 +29,13 @@ export function saveEntries(entries: Entry[]): void {
 
 export function createId(): string {
   return `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`
+}
+
+/* A date with no time, e.g. "June 11, 2026" -> for the entry heading + list. */
+export function formatDay(ts: number): string {
+  return new Date(ts).toLocaleDateString(undefined, {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  })
 }

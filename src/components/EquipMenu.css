@@ -10,36 +10,26 @@
   z-index: 50;
 }
 
-.equip-column {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.equip-row {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  /* closed: slid off to the left and faded out */
+/* The L-track: boxes are absolutely positioned inside and slide between cells.
+   Closed = faded and nudged off to the left. */
+.equip-track {
+  position: relative;
   opacity: 0;
-  transform: translateX(-28px);
-  transition: opacity 130ms ease, transform 130ms ease;
+  transform: translateX(-24px);
+  transition: opacity 150ms ease, transform 150ms ease;
 }
 
-.equip[data-open='true'] .equip-row {
+.equip[data-open='true'] .equip-track {
   opacity: 1;
   transform: translateX(0);
-  transition-delay: calc(var(--i) * 40ms); /* staggered snap-in */
 }
 
 .equip-box {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 58px;
   height: 58px;
-  flex: none;
   display: grid;
   place-items: center;
   font-size: 24px;
@@ -49,8 +39,15 @@
   /* bevel: light top-left, dark bottom-right */
   box-shadow: inset 1px 1px 0 rgba(154, 247, 223, 0.15),
     inset -1px -1px 0 rgba(0, 0, 0, 0.6), inset 0 0 12px rgba(0, 0, 0, 0.5);
-  transition: transform 110ms ease, border-color 110ms ease,
+  /* transform animates the slide around the L; scale/colors animate the select */
+  transition: transform 160ms ease, scale 110ms ease, border-color 110ms ease,
     box-shadow 110ms ease, background 110ms ease, color 110ms ease;
+}
+
+/* The one item teleporting across the wrap shouldn't animate its slide. */
+.equip-box.no-anim {
+  transition: scale 110ms ease, border-color 110ms ease, box-shadow 110ms ease,
+    background 110ms ease, color 110ms ease;
 }
 
 .equip-box.selected {
@@ -59,7 +56,7 @@
   background: var(--box-selected);
   box-shadow: inset 0 0 12px rgba(154, 247, 223, 0.25),
     0 0 14px rgba(154, 247, 223, 0.3);
-  transform: scale(1.07);
+  scale: 1.07; /* standalone property, so it composes with the position transform */
 }
 
 /* Targeting brackets on the highlighted box (top-left + bottom-right) */
@@ -84,8 +81,11 @@
   border-width: 0 2px 2px 0;
 }
 
-/* The horizontal description bar */
+/* Description for the selected item, sitting just below the elbow of the L. */
 .equip-label {
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   flex-direction: column;
   gap: 3px;
@@ -93,7 +93,7 @@
   min-width: 220px;
   background: linear-gradient(90deg, var(--box) 0%, transparent 100%);
   border-left: 2px solid var(--accent);
-  animation: labelIn 130ms ease;
+  animation: labelIn 150ms ease;
 }
 
 @keyframes labelIn {

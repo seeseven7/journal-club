@@ -4,12 +4,57 @@
   width: 100%;
 }
 
-/* The page you write on. Just text floating on the terminal background. */
+/* The page you write on: a title heading, a date subheading, then the body.
+   All text floats on the terminal background */
 .page {
   position: absolute;
   inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 7vh 8vw;
+  transition: filter 160ms ease;
+}
+
+/* Dim the page while the equip menu is up */
+.screen--dimmed .page {
+  filter: brightness(0.45) saturate(0.7);
+}
+
+.page__head {
+  flex: none;
+  margin-bottom: 3vh;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.page__title {
   width: 100%;
-  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  caret-color: var(--accent);
+}
+
+.page__title::placeholder {
+  color: var(--ink-dim);
+}
+
+.page__date {
+  margin-top: 8px;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+.page__body {
+  flex: 1;
+  width: 100%;
   resize: none;
   border: none;
   outline: none;
@@ -19,20 +64,13 @@
   font-size: 18px;
   line-height: 1.7;
   letter-spacing: 0.04em;
-  padding: 8vh 8vw;
   caret-color: var(--accent);
-  transition: filter 160ms ease;
 }
 
-.page::placeholder {
+.page__body::placeholder {
   color: var(--ink-dim);
   letter-spacing: 0.2em;
   text-transform: uppercase;
-}
-
-/* Dim the page while the equip menu is up, MGS-style */
-.screen--dimmed .page {
-  filter: brightness(0.45) saturate(0.7);
 }
 
 .hud {
@@ -51,6 +89,11 @@
 
 .hud__status {
   color: var(--accent);
+}
+
+/* Quietly shows whether the current page is written to storage yet */
+.hud__save {
+  color: var(--ink-dim);
 }
 
 .hud kbd {

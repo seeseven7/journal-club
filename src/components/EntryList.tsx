@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import type { Entry } from '../storage'
+import { formatDay, type Entry } from '../storage'
 import './EntryList.css'
 
 type Props = {
@@ -8,19 +8,12 @@ type Props = {
   onClose: () => void
 }
 
-function preview(body: string): string {
-  const line = body.trim().split('\n')[0]
-  return line ? line.slice(0, 64) : '(empty)'
-}
-
-function formatDate(ts: number): string {
-  return new Date(ts).toLocaleString(undefined, {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-    hour: 'numeric',
-    minute: '2-digit',
-  })
+// The entry's title, falling back to its first line, then to "Untitled".
+function heading(entry: Entry): string {
+  const title = entry.title?.trim()
+  if (title) return title
+  const firstLine = entry.body.trim().split('\n')[0]
+  return firstLine ? firstLine.slice(0, 64) : 'Untitled'
 }
 
 export function EntryList({ entries, onSelect, onClose }: Props) {
@@ -48,11 +41,9 @@ export function EntryList({ entries, onSelect, onClose }: Props) {
             {sorted.map((entry) => (
               <li key={entry.id}>
                 <button type="button" onClick={() => onSelect(entry)}>
+                  <span className="entry-list__title">{heading(entry)}</span>
                   <span className="entry-list__date">
-                    {formatDate(entry.updatedAt)}
-                  </span>
-                  <span className="entry-list__preview">
-                    {preview(entry.body)}
+                    {formatDay(entry.createdAt)}
                   </span>
                 </button>
               </li>
